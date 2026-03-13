@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -14,13 +15,13 @@ public class LocalizationSourceGenerator : IIncrementalGenerator
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
         // Watch for .json and .yaml files
-        var localizationFiles = context.AdditionalFilesProvider
+        var localizationFiles = context.AdditionalTextsProvider
             .Where(file => file.Path.EndsWith(".json") || file.Path.EndsWith(".yaml"));
 
-        var provider = localizationFiles.Select((file, ct) => 
+        var provider = localizationFiles.Select((text, ct) => 
         {
-            var content = file.GetText(ct)?.ToString();
-            var fileName = Path.GetFileNameWithoutExtension(file.Path);
+            var content = text.GetText(ct)?.ToString();
+            var fileName = Path.GetFileNameWithoutExtension(text.Path);
             return new { FileName = fileName, Content = content };
         });
 
@@ -41,14 +42,13 @@ public class LocalizationSourceGenerator : IIncrementalGenerator
             {
                 if (string.IsNullOrEmpty(file.Content)) continue;
 
-                // Simple regex-based key extraction to avoid heavy dependencies in SG
+                // Simple regex-based key extraction
                 var matches = Regex.Matches(file.Content, @"""(?<key>[^""]+)""\s*:");
                 foreach (Match match in matches)
                 {
                     keys.Add(match.Groups["key"].Value);
                 }
                 
-                // Also try YAML format if JSON regex didn't catch enough
                 var yamlMatches = Regex.Matches(file.Content, @"^(?<key>[^:\s#]+)\s*:", RegexOptions.Multiline);
                 foreach (Match match in yamlMatches)
                 {
@@ -74,8 +74,8 @@ public class LocalizationSourceGenerator : IIncrementalGenerator
 
     private string SanitizeName(string name)
     {
-        // Replace invalid chars with underscore and ensure it starts with a letter/underscore
         var sanitized = Regex.Replace(name, @"[^a-zA-Z0-9_]", "_");
+        if (string.IsNullOrEmpty(sanitized)) return "Key";
         if (char.IsDigit(sanitized[0])) sanitized = "_" + sanitized;
         return sanitized;
     }

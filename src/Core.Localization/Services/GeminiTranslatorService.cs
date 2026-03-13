@@ -35,7 +35,7 @@ public class GeminiTranslatorService : IAiTranslatorService
 
         try
         {
-            var client = new Google.GenAI.GenerateContentClient(apiKey: _apiKey);
+            var client = new Google.GenAI.Client(apiKey: _apiKey);
             
             var sourceJson = JsonSerializer.Serialize(resources, new JsonSerializerOptions { WriteIndented = true });
             
@@ -54,8 +54,16 @@ public class GeminiTranslatorService : IAiTranslatorService
                 Source JSON:
                 {sourceJson}";
 
-            var response = await client.GenerateContentAsync(ModelName, prompt);
-            var resultText = response.Text;
+            var response = await client.Models.GenerateContentAsync(ModelName, prompt);
+            
+            // In Official SDK 1.0.0, text is nested in Candidates[0].Content.Parts[0].Text
+            var resultText = response.Candidates?[0]?.Content?.Parts?[0]?.Text;
+
+            if (string.IsNullOrEmpty(resultText))
+            {
+                _logger.LogWarning("Gemini returned an empty response.");
+                return new Dictionary<string, string>();
+            }
 
             // Extract JSON if AI wrapped it in markdown code blocks
             if (resultText.Contains("```json"))

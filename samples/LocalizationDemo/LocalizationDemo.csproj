@@ -10,4 +10,9 @@
     <ProjectReference Include="..\..\src\Core.Localization\Core.Localization.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <AdditionalFiles Include="..\..\src\Core.Localization\Resources\*.json" />
+    <AdditionalFiles Include="..\..\src\Core.Localization\Resources\*.yaml" />
+  </ItemGroup>
+
 </Project>

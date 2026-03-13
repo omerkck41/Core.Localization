@@ -25,4 +25,8 @@
     <ProjectReference Include="..\..\src\Core.Localization\Core.Localization.csproj" />
   </ItemGroup>
 
-</Project>
+  <ItemGroup>
+    <AdditionalFiles Include="..\..\src\Core.Localization\Resources\*.json" />
+  </ItemGroup>
+
+  </Project>
