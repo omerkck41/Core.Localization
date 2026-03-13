@@ -83,15 +83,43 @@ public class FormatterService : IFormatterService
     private string GetPluralCategory(double count, CultureInfo culture)
     {
         var language = culture.TwoLetterISOLanguageName;
+        var i = (int)count;
+        var isInteger = count == i;
 
         switch (language)
         {
             case "tr":
-                return count == 1 ? "one" : "other"; // Basic TR rule
+            case "az":
+                return i == 1 ? "one" : "other";
             case "en":
-                return count == 1 ? "one" : "other"; // Basic EN rule
+            case "de":
+            case "it":
+            case "es":
+                return i == 1 ? "one" : "other";
+            case "fr":
+                return (i == 0 || i == 1) ? "one" : "other";
+            case "ru":
+            case "uk":
+            case "be":
+                if (!isInteger) return "other";
+                if (i % 10 == 1 && i % 100 != 11) return "one";
+                if (i % 10 >= 2 && i % 10 <= 4 && (i % 100 < 10 || i % 100 >= 20)) return "few";
+                if (i % 10 == 0 || (i % 10 >= 5 && i % 10 <= 9) || (i % 100 >= 11 && i % 100 <= 14)) return "many";
+                return "other";
+            case "pl":
+                if (!isInteger) return "other";
+                if (i == 1) return "one";
+                if (i % 10 >= 2 && i % 10 <= 4 && (i % 100 < 10 || i % 100 >= 20)) return "few";
+                return "many";
+            case "ar":
+                if (i == 0) return "zero";
+                if (i == 1) return "one";
+                if (i == 2) return "two";
+                if (i % 100 >= 3 && i % 100 <= 10) return "few";
+                if (i % 100 >= 11 && i % 100 <= 99) return "many";
+                return "other";
             default:
-                return count == 1 ? "one" : "other";
+                return i == 1 ? "one" : "other";
         }
     }
 

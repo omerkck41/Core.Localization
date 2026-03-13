@@ -138,8 +138,31 @@ Standart .NET Resource dosyasıdır. Visual Studio üzerinden veya manuel olarak
 
 ## 🛠️ Özellikler
 - **IStringLocalizer Uyumu:** .NET'in standart `IStringLocalizer` yapısıyla %100 uyumludur.
-- **Yüksek Performans:** Akıllı Cache mekanizması ile en hızlı çeviri deneyimi.
-- **Esnek:** JSON, YAML, Resx desteği varsayılan olarak gelir; veri tabanı desteği saniyeler içinde eklenebilir.
+- **Tip Güvenliği (Source Generator):** "Magic string" hatalarına son! `L.AnahtarKelime` şeklinde IntelliSense desteğiyle çalışın.
+- **AI Otomatik Çeviri:** Gemini AI entegrasyonu ile dil dosyalarınızı saniyeler içinde tüm dünya dillerine çevirin.
+- **Gelişmiş Çoğullaştırma (CLDR):** Türkçe, İngilizce, Arapça, Rusça gibi dillerin karmaşık çoğul kuralları (One, Few, Many vb.) otomatik yönetilir.
+- **Yüksek Performans:** Akıllı Cache mekanizması ve düşük bellek kullanımı.
+
+---
+
+## 💎 Gelişmiş Kullanım
+
+### 1. Tip Güvenli Erişim (IntelliSense)
+Source Generator sayesinde dil dosyalarınızdaki anahtarlar otomatik olarak `L` sınıfına eklenir:
+```csharp
+// Eskiden: _localization.GetString("WelcomeMessage")
+// Şimdi:
+string msg = _localization.GetString(L.WelcomeMessage);
+```
+
+### 2. AI Otomatik Çeviri (Gemini)
+Gemini AI kullanarak tüm projenizi otomatik yerelleştirebilirsiniz:
+```csharp
+var translator = new GeminiTranslatorService("YOUR_GEMINI_API_KEY", logger);
+var translations = await translator.TranslateAsync(sourceResources, 
+    new CultureInfo("tr-TR"), 
+    new CultureInfo("en-US"));
+```
 
 ## 📄 Lisans
 Bu proje [MIT](LICENSE) lisansı ile korunmaktadır.
