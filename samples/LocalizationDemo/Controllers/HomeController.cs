@@ -20,12 +20,13 @@ public class HomeController : Controller
     public IActionResult Index()
     {
         var currentCulture = CultureInfo.CurrentCulture;
-        
+
         // 1. Strongly Typed Resources Demo (Source Generator)
         // Using L.Welcome instead of "Welcome"
-        ViewBag.WelcomeMessage = _localization.GetString(L.Welcome, new { 
-            StoreName = "CoreShop", 
-            UserName = "Gemini" 
+        ViewBag.WelcomeMessage = _localization.GetString(L.Welcome, new
+        {
+            StoreName = "CoreShop",
+            UserName = "Omerkck41"
         });
 
         // 2. Pluralization Demo
@@ -36,7 +37,7 @@ public class HomeController : Controller
         // 3. Formatting Demo
         ViewBag.CurrentDate = _formatter.FormatDate(DateTime.Now, culture: currentCulture);
         ViewBag.Price = _formatter.FormatCurrency(1250.75m, culture: currentCulture);
-        
+
         ViewBag.SupportedCultures = _localization.GetSupportedCultures();
         return View();
     }
@@ -44,7 +45,7 @@ public class HomeController : Controller
     public IActionResult Demo()
     {
         var currentCulture = CultureInfo.CurrentCulture;
-        
+
         var model = new DemoViewModel
         {
             UserName = "Admin",
@@ -58,9 +59,10 @@ public class HomeController : Controller
         ViewBag.Welcome = _localization.GetString(L.Welcome, new { model.StoreName, model.UserName });
         ViewBag.CartText = _localization.GetPluralString(L.CartSummary, model.CartItemCount);
         ViewBag.StockText = _localization.GetPluralString(L.StockStatus, model.StockCount);
-        ViewBag.OrderSuccessText = _localization.GetString(L.OrderSuccess, new { 
-            model.UserName, 
-            Amount = _formatter.FormatCurrency(model.TotalAmount, culture: currentCulture) 
+        ViewBag.OrderSuccessText = _localization.GetString(L.OrderSuccess, new
+        {
+            model.UserName,
+            Amount = _formatter.FormatCurrency(model.TotalAmount, culture: currentCulture)
         });
 
         ViewBag.SupportedCultures = _localization.GetSupportedCultures();
