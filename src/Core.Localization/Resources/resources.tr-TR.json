@@ -1,0 +1,13 @@
+{
+  "Hello": "Merhaba Dünya!",
+  "Welcome": "{StoreName} mağazasına hoş geldiniz, {UserName}!",
+  "CartSummary": "Sepetinizde {count, plural, zero{hiç ürün yok} one{1 ürün var} other{# ürün var}}.",
+  "OrderSuccess": "Teşekkürler {UserName}! {Amount} tutarındaki siparişiniz alındı.",
+  "ItemPrice": "Fiyat: {Price}",
+  "StockStatus": "{count, plural, zero{Stokta yok} one{Son 1 ürün!} other{Stokta # adet var}}",
+  "RequiredField": "{0} alanı zorunludur.",
+  "Submit": "Gönder",
+  "Cancel": "İptal",
+  "Save": "Kaydet",
+  "Delete": "Sil"
+}

@@ -1,0 +1,45 @@
+Validation:
+  Required: "{0} is required"
+  MinLength: "{0} must be at least {1} characters long"
+  MaxLength: "{0} must be at most {1} characters long"
+  Email: "Email format is invalid"
+  Password: "Password must contain at least one uppercase letter, one lowercase letter, and one number"
+
+Messages:
+  Success: "Operation completed successfully"
+  Error: "An error occurred"
+  NotFound: "Resource not found"
+  AccessDenied: "Access denied"
+
+Common:
+  Actions:
+    Submit: "Submit"
+    Cancel: "Cancel"
+    Save: "Save"
+    Delete: "Delete"
+    Search: "Search"
+    Login: "Login"
+    Logout: "Logout"
+  
+  Fields:
+    Username: "Username"
+    Password: "Password"
+    Email: "Email"
+    FirstName: "First Name"
+    LastName: "Last Name"
+
+DateTime:
+  Today: "Today"
+  Tomorrow: "Tomorrow"
+  Yesterday: "Yesterday"
+  DateFormat: "MM/dd/yyyy"
+  TimeFormat: "hh:mm tt"
+  DateTimeFormat: "MM/dd/yyyy hh:mm tt"
+
+Greetings:
+  Hello: "Hello"
+  Welcome: "Welcome to {0}"
+  Goodbye: "Goodbye"
+
+Currency:
+  Format: "${0:N2}"

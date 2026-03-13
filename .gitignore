@@ -1,0 +1,29 @@
+# .NET Core ignore
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+log/
+logs/
+.vs/
+.vscode/
+*.user
+*.userosscache
+*.sln.docuser
+.idea/
+
+# Core.Localization Special Exclusions
+GEMINI.md
+GEMINI-GLOBAL.md
+
+# Packages
+*.nupkg
+*.snupkg
+
+# User secrets
+appsettings.Development.json
+appsettings.json
+user-secrets.json
+
+# OS specific
+.DS_Store
+Thumbs.db

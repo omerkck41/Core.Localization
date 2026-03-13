@@ -1,0 +1,63 @@
+@{
+    ViewData["Title"] = "Core.Localization Demo";
+}
+
+<div class="container mt-5">
+    <div class="jumbotron shadow-sm p-5 mb-5 bg-white rounded">
+        <h1 class="display-4 text-primary">@ViewBag.WelcomeMessage</h1>
+        <p class="lead">Today is: <strong>@ViewBag.CurrentDate</strong></p>
+        <hr class="my-4">
+        
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card border-info mb-3">
+                    <div class="card-header bg-info text-white">Pluralization (0 items)</div>
+                    <div class="card-body">
+                        <p class="card-text">@ViewBag.Cart1</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-success mb-3">
+                    <div class="card-header bg-success text-white">Pluralization (1 item)</div>
+                    <div class="card-body">
+                        <p class="card-text">@ViewBag.Cart2</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-primary mb-3">
+                    <div class="card-header bg-primary text-white">Pluralization (5 items)</div>
+                    <div class="card-body">
+                        <p class="card-text">@ViewBag.Cart3</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <h4>Currency Formatting: <span class="badge badge-pill badge-warning">@ViewBag.Price</span></h4>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Change Language</h5>
+                    <form asp-action="SetLanguage" method="post" class="form-inline justify-content-center">
+                        <input type="hidden" name="returnUrl" value="@Context.Request.Path" />
+                        <select name="culture" class="form-control mr-2" onchange="this.form.submit()">
+                            @foreach (var culture in ViewBag.SupportedCultures)
+                            {
+                                <option value="@culture.Name" selected="@(culture.Name == System.Globalization.CultureInfo.CurrentCulture.Name)">
+                                    @culture.NativeName
+                                </option>
+                            }
+                        </select>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

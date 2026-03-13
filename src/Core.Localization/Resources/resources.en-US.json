@@ -1,0 +1,13 @@
+{
+  "Hello": "Hello World!",
+  "Welcome": "Welcome to {StoreName}, {UserName}!",
+  "CartSummary": "You have {count, plural, zero{no items} one{1 item} other{# items}} in your cart.",
+  "OrderSuccess": "Thank you {UserName}! Your order of {Amount} has been received.",
+  "ItemPrice": "Price: {Price}",
+  "StockStatus": "{count, plural, zero{Out of stock} one{Last 1 item!} other{# items in stock}}",
+  "RequiredField": "The field {0} is required.",
+  "Submit": "Submit",
+  "Cancel": "Cancel",
+  "Save": "Save",
+  "Delete": "Delete"
+}
