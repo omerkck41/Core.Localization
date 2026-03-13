@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Core.Localization\Core.Localization.csproj" />
+    <ProjectReference Include="..\..\src\Core.Localization.SourceGenerator\Core.Localization.SourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
   </ItemGroup>
 
   <ItemGroup>
