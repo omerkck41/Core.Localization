@@ -109,9 +109,11 @@ builder.Services.AddScoped<IResourceProvider, MyCustomDbProvider>();
 
 ---
 
-## 📄 Dil Dosyası Formatı (JSON)
-`Resources/resources.tr-TR.json` dosyanız şu yapıda olmalıdır:
+## 📄 Dil Dosyası Formatları
 
+Kütüphane, dosya uzantısına göre otomatik olarak doğru sağlayıcıyı seçer.
+
+### 1. JSON Formatı (`Resources/resources.tr-TR.json`)
 ```json
 {
   "Welcome": "Hoş Geldiniz",
@@ -119,6 +121,20 @@ builder.Services.AddScoped<IResourceProvider, MyCustomDbProvider>();
   "CartItems": "{count, plural, zero{Sepetiniz boş} one{Sepetinizde 1 ürün var} other{Sepetinizde # ürün var}}"
 }
 ```
+
+### 2. YAML Formatı (`Resources/resources.tr-TR.yaml`)
+```yaml
+Welcome: "Hoş Geldiniz"
+UserWelcome: "Merhaba {Name}, {Store} mağazasına hoş geldin!"
+CartItems: "{count, plural, zero{Sepetiniz boş} one{Sepetinizde 1 ürün var} other{Sepetinizde # ürün var}}"
+```
+
+### 3. Resx Formatı (`Resources/resources.tr-TR.resx`)
+Standart .NET Resource dosyasıdır. Visual Studio üzerinden veya manuel olarak yönetilebilir.
+*   **Name:** `Welcome`, **Value:** `Hoş Geldiniz`
+*   **Name:** `UserWelcome`, **Value:** `Merhaba {Name}, {Store} mağazasına hoş geldin!`
+
+*Not: Resx formatı karmaşık çoğullaştırma (Pluralization) kuralları için kısıtlıdır, bu özellikler için JSON veya YAML önerilir.*
 
 ## 🛠️ Özellikler
 - **IStringLocalizer Uyumu:** .NET'in standart `IStringLocalizer` yapısıyla %100 uyumludur.
